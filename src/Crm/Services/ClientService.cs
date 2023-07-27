@@ -4,24 +4,17 @@ namespace Crm.Services;
 
 public sealed class ClientService
 {
-    public Client CreateClient(
-        string firstName,
-        string lastName,
-        string middleName,
-        short age,
-        string passportNumber,
-        Gender gender
-    )
+    public Client CreateClient(ClientInfo clientInfo)
     {
         // TODO: Validate input parameters.
         return new()
         {
-            FirstName = firstName,
-            LastName = lastName,
-            MiddleName = middleName,
-            Age = age,
-            PassportNumber = passportNumber,
-            Gender = gender
+            FirstName = clientInfo.FirstName,
+            LastName = clientInfo.LastName,
+            MiddleName = clientInfo.MiddleName,
+            Age = clientInfo.Age,
+            PassportNumber = clientInfo.PassportNumber,
+            Gender = clientInfo.Gender
         };
     }
 }

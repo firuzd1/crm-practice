@@ -56,7 +56,6 @@ void CreateClient()
 }
 void GetOrderDetails()
 {
-    Order order = new Order();
     OrderService orderService = new();
     
     System.Console.WriteLine("Введите идентификатор заказа:");
@@ -66,7 +65,7 @@ void GetOrderDetails()
     Console.WriteLine("Введите цену заказа:");
     string orderPriceStr = Console.ReadLine();
     Console.WriteLine("Введите дату заказа (в формате дд.мм.гггг):");
-    DateTime orderDate = order.OrderDate = Convert.ToDateTime(Console.ReadLine());
+    DateTime orderDate = Convert.ToDateTime(Console.ReadLine());
     System.Console.WriteLine("Введите тип доставки:");
     string orderDeliveryTypeStr = Console.ReadLine();
     System.Console.WriteLine("Введите адрес доставки:");
@@ -80,7 +79,7 @@ void GetOrderDetails()
         return;
 
     short orderId = short.Parse(orderIdStr);
-    decimal orderPrice = short.Parse(orderPriceStr);
+    decimal orderPrice = decimal.Parse(orderPriceStr);
     DeliveryType orderDeliveryType = (DeliveryType)int.Parse(orderDeliveryTypeStr);
 
     Order newOrder = orderService.CreateOrder( new OrderInfo()

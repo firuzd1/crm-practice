@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\crm-practice\\crm-practice\\src\\Crm\\Crm.csproj",
+      "projectUniqueName": "D:\\crm-practice1111\\crm-practice\\src\\Crm\\Crm.csproj",
       "projectName": "Crm",
-      "projectPath": "D:\\crm-practice\\crm-practice\\src\\Crm\\Crm.csproj",
+      "projectPath": "D:\\crm-practice1111\\crm-practice\\src\\Crm\\Crm.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\crm-practice\\crm-practice\\src\\Crm\\obj\\",
+      "outputPath": "D:\\crm-practice1111\\crm-practice\\src\\Crm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

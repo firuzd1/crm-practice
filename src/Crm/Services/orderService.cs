@@ -12,7 +12,7 @@ public sealed class OrderService
             OrderId = orderInfo.OrderId,
             OrderDescription = orderInfo.OrderDescription,
             OrderPrice = orderInfo.OrderPrice,
-            OrderDate = orderInfo.OrderDate,
+            //OrderDate = orderInfo.OrderDate,
             OrderDeliveryType = orderInfo.OrderDeliveryType,
             OrderDeliveryAddress = orderInfo.OrderDeliveryAddress
         };

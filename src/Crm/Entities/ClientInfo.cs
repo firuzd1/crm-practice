@@ -8,4 +8,7 @@ public readonly struct ClientInfo
     public readonly short Age { get; init; }
     public readonly string PassportNumber { get; init; }
     public readonly Gender Gender { get; init; }
+    public readonly string UserPhone { get; init; }
+    public readonly string UserEmail{ get; init; }
+    public readonly string UserPassword { get; init; }
 }

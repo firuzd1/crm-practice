@@ -9,9 +9,6 @@ public sealed class Client
     private string? _userMiddleName;
     public short userAge;
     private string? _userPassportNumber; 
-    private string? _userPhone;
-    private string? _userEmail;
-    private string? _userPassword;
     public required string FirstName 
     {
         get => _userFirstName ?? string.Empty;
@@ -46,19 +43,4 @@ public sealed class Client
         init => _userPassportNumber = value is {Length : < 4} ? throw new Exception("Номер пасспорта состоит минимум из 4 цифр!") : _userPassportNumber = value;
     }
     public Gender Gender { get; init; }
-    public required string UserPhone
-    {
-        get => _userPhone ?? string.Empty;
-        init => _userPhone = value is {Length: > 1} ? value : throw new Exception("Поле Phone не может быть пустым!");
-    }
-    public required string UserEmail
-    {
-        get => _userEmail ?? string.Empty;
-        init => _userEmail = value is {Length: > 1} ? value : throw new Exception("Поле e-mail не может быть пустой!");
-    }
-    public required string UserPassword
-    {
-        get => _userPassword ?? string.Empty;
-        init => _userPassword = value is {Length: > 1} ? value : throw new Exception("Поле пароль не может быть пустой!");
-    }
 }

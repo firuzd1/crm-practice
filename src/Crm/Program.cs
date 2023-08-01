@@ -32,16 +32,8 @@ void CreateClient()
     string passportNumber =  Console.ReadLine();
     System.Console.WriteLine("Выберите свой гендер (0 - Male, 1 - Female): ");
     string genderInpurStr =  Console.ReadLine();
-    System.Console.WriteLine("Введите номер телефона: ");
-    string userPhone = Console.ReadLine();
-    System.Console.WriteLine("Введите вашу почту: ");
-    string userEmail = Console.ReadLine();
-    System.Console.WriteLine("Придумайте пароль: ");
-    string userPassword = Console.ReadLine();
-    System.Console.WriteLine("Повторите пароль: ");
-    string userPassword2 = Console.ReadLine();
 
-    if(!ValidateClient(firstName,lastName,middleName,ageInputStr,passportNumber,genderInpurStr, userPhone, userEmail, userPassword, userPassword2))
+    if(!ValidateClient(firstName,lastName,middleName,ageInputStr,passportNumber,genderInpurStr))
         return;
 
     Gender gender = (Gender)int.Parse(genderInpurStr);
@@ -54,17 +46,13 @@ void CreateClient()
         MiddleName = middleName,
         Age = age,
         PassportNumber = passportNumber,
-        Gender = gender,
-        UserPhone = userPhone,
-        UserEmail = userEmail,
-        UserPassword = userPassword
-        
+        Gender = gender
     });
 
     Console.WriteLine("Client Name: {0}",string.Join(' ', newClient.FirstName, newClient.MiddleName, newClient.LastName));
 
-    Console.WriteLine("Client Age: {0}\nClient Passport Number: {1}\nGender: {2}\nPhone: {3}\ne-mail: {4}", 
-    newClient.Age, newClient.PassportNumber, newClient.Gender, newClient.UserPhone, newClient.UserEmail);
+    Console.WriteLine("Client Age: {0}", newClient.Age);
+    Console.WriteLine("Client Passport Number: {0}", newClient.PassportNumber);
 }
 void GetOrderDetails()
 {
@@ -112,11 +100,7 @@ bool ValidateClient(
     string middleName,
     string ageStr,
     string passportnum,
-    string genderStr,
-    string userPhone,
-    string userEmail,
-    string userPassword,
-    string userPasswordForCheck)
+    string genderStr)
     {
         List<string> errors = new();
 
@@ -137,15 +121,6 @@ bool ValidateClient(
         bool isEnumGenderCorrect = genderIndex.TryParse(out Gender gender);
         if(!isEnumGenderCorrect)
             errors.Add("Пожалуйста введите корректные данные для поля Гендер (0 - Male, 1 - Female)!");
-        if(userPhone is {Length: 0})
-            errors.Add("Поле телефон не может быть пустым!");
-        if(userEmail is {Length: 0})
-            errors.Add("Поле e-mail не может быть пустым!");
-        if(userPassword is {Length: 0} || userPasswordForCheck is {Length: 0})
-            errors.Add("Поле пароль не може быть пустым!");
-        bool areEqual = userPassword.Equals(userPasswordForCheck);
-        if(!areEqual)
-            errors.Add("Пароли отличаются!");
 
             if(errors is {Count: >0})
             {

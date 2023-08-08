@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\crm-practice1111\\crm-practice\\src\\Crm\\Crm.csproj",
+      "projectUniqueName": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
       "projectName": "Crm",
-      "projectPath": "D:\\crm-practice1111\\crm-practice\\src\\Crm\\Crm.csproj",
+      "projectPath": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\crm-practice1111\\crm-practice\\src\\Crm\\obj\\",
+      "outputPath": "E:\\CRM\\crm-practice\\src\\Crm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -10,7 +10,25 @@ if(command.Equals("Create client"))
 {
     CreateClient();
     System.Console.WriteLine("Creating client...");
+    System.Console.WriteLine("Если хотите создать ещё одного пользователя наберите <Create another one>");
+    command = Console.ReadLine();
+    if (command.Equals("Create another one"))
+        CreateClient();
 }
+System.Console.WriteLine("Чтобы получить пользователя наберите <yes>");
+command = Console.ReadLine();
+if (command.Equals("yes"))
+{
+    ClientService service = new();
+    System.Console.WriteLine("Введите имя: ");
+    string first = Console.ReadLine();
+    System.Console.WriteLine("Введите фамилию: ");
+    string second = Console.ReadLine();
+    Client myClient = service.GetClient(first, second);
+    
+
+}
+
 else if(command.Equals("Create order"))
 {
     GetOrderDetails();
@@ -42,7 +60,11 @@ void CreateClient()
     string userPassword2 = Console.ReadLine();
 
     if(!ValidateClient(firstName,lastName,middleName,ageInputStr,passportNumber,genderInpurStr, userPhone, userEmail, userPassword, userPassword2))
+    {
+        System.Console.WriteLine("Validation error!");
         return;
+    }
+        
 
     Gender gender = (Gender)int.Parse(genderInpurStr);
     short age = short.Parse(ageInputStr);

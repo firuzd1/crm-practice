@@ -31,11 +31,9 @@ public sealed class ClientService
             throw new ArgumentNullException(nameof(firstName));
         if (lastName is not { Length: > 0 })
             throw new ArgumentNullException(nameof(lastName));
-        System.Console.WriteLine("Before foreach " + _clientList.FirstOrDefault().FirstName);
         foreach (Client client in _clientList)
         {
-            System.Console.WriteLine("Get Client "+client.FirstName);
-            if (client.FirstName.Equals(firstName) && client.LastName.Equals(lastName))
+            if (client.FirstName == firstName && client.LastName == lastName)
             {
                 return client;
             }
@@ -43,6 +41,25 @@ public sealed class ClientService
         return null;
     }
 
- 
+    public Client? ChangeClientName(string name, string lastName)
+    {
+        if(name is not {Length: > 0})
+            throw new ArgumentNullException(nameof(name));
+        if(lastName is not {Length: > 0})
+            throw new ArgumentNullException(nameof(lastName));
+        foreach(Client client in _clientList)
+        {
+            if(client.FirstName.Equals(name) && client.LastName.Equals(lastName))
+            {
+                System.Console.WriteLine("Измените имя: ");
+                client.FirstName = Console.ReadLine();
+                System.Console.WriteLine("Измените фамилию: ");
+                client.LastName = Console.ReadLine();
+                return client;
+            }
+            else throw new Exception("Пользователь не найден!");
+        }
+        return null;
+    }
 
 }

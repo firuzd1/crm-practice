@@ -28,7 +28,7 @@ public sealed class Order
     public string OrderDescription 
     {
         get => orderDescription ?? string.Empty;
-        init => orderDescription = value is {Length: < 2} ? throw new Exception("Описание не может содержать один символ!") : orderDescription = value;
+        set => orderDescription = value is {Length: < 2} ? throw new Exception("Описание не может содержать один символ!") : orderDescription = value;
     }
     public decimal OrderPrice 
     {

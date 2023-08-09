@@ -32,4 +32,38 @@ public sealed class OrderService
         }
         return null;
     }
+    public Order? ChangeDescription(string find)
+    {
+        bool check = int.TryParse(find, out int id);
+        if(!check)
+            throw new Exception("Введены не верные данные!");
+
+        foreach(Order order in _orderList)
+        {
+            if(order.OrderId.Equals(id))
+            {
+                System.Console.WriteLine("Введите изменения описания заказа: ");
+                order.OrderDescription = Console.ReadLine();
+                return order;
+            }
+        }
+        return null;
+    }
+    public void DeleteOrder(string forDelete)
+    {
+        bool idForDel = int.TryParse(forDelete, out int DelId);
+        if(!idForDel)
+            throw new ArgumentNullException(nameof(forDelete));
+        Order orderForDelete = null;
+        
+        foreach(Order order in _orderList)
+        {
+            if(order.OrderId == DelId)
+            {
+                orderForDelete = order;
+            }
+        }
+        if(orderForDelete != null)
+            _orderList.Remove(orderForDelete);
+    }
 }

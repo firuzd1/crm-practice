@@ -5,39 +5,78 @@ using Crm.Services;
 System.Console.WriteLine("Чтобы создать пользователя наберите <Create client> ");
 System.Console.WriteLine("Чтобы оформить заказ наберите <Create order>");
 string command = Console.ReadLine();
+ClientService service = new();
+OrderService orderService = new();
 
 if(command.Equals("Create client"))
 {
+    System.Console.WriteLine("Скольких клиентов хотите создать?");
+    int count = int.Parse(Console.ReadLine());
+    while(count > 0)
+    {
     CreateClient();
     System.Console.WriteLine("Creating client...");
-    System.Console.WriteLine("Если хотите создать ещё одного пользователя наберите <Create another one>");
+    count--;
+    }
+     System.Console.WriteLine("Чтобы получить пользователя наберите <yes>");
     command = Console.ReadLine();
-    if (command.Equals("Create another one"))
-        CreateClient();
-}
-System.Console.WriteLine("Чтобы получить пользователя наберите <yes>");
-command = Console.ReadLine();
-if (command.Equals("yes"))
-{
-    ClientService service = new();
-    System.Console.WriteLine("Введите имя: ");
-    string first = Console.ReadLine();
-    System.Console.WriteLine("Введите фамилию: ");
-    string second = Console.ReadLine();
-    Client myClient = service.GetClient(first, second);
-    
+    if (command.Equals("yes"))
+    {
+        System.Console.WriteLine("Введите имя затем нажав <enter> введите фамилию: ");
+        Client myClient = service.GetClient(Console.ReadLine(), Console.ReadLine());
+        System.Console.WriteLine($"Name: {myClient.FirstName}\nLast Name: {myClient.LastName}\nMiddle Name: {myClient.MiddleName}\nAge: {myClient.Age}\nPassport Number: {myClient.PassportNumber}\nPhone Number: {myClient.UserPhone}");
+    }
+    System.Console.WriteLine("Чтобы изменить имя и фамилию пользователя наберите <yes>");
+    command = Console.ReadLine();
+    if(command.Equals("yes"))
+    {
+        System.Console.WriteLine("Введите имя после нажав на <enter> введите фамилию!");
+        Client ChangeClientName = service.ChangeClientName(Console.ReadLine(), Console.ReadLine());
+        System.Console.WriteLine($"Name: {ChangeClientName.FirstName}\nLast Name: {ChangeClientName.LastName}\nMiddle Name: {ChangeClientName.MiddleName}\nAge: {ChangeClientName.Age}\nPassport Number: {ChangeClientName.PassportNumber}\nPhone Number: {ChangeClientName.UserPhone}");
 
+    }
 }
-
 else if(command.Equals("Create order"))
 {
-    GetOrderDetails();
-    System.Console.WriteLine("Creating order...");
+    System.Console.WriteLine("Введите количество заказов: ");
+    int count = int.Parse(Console.ReadLine());
+    while(count > 0)
+    {    
+        GetOrderDetails();
+        System.Console.WriteLine("Creating order...");
+        count--;
+    }
+
+System.Console.WriteLine("Чтобы найти заказ наберите <yes>");
+command = Console.ReadLine();
+if(command.Equals("yes"))
+{
+    System.Console.WriteLine("Введите описание заказа: ");
+    command = Console.ReadLine();
+    Order myOrder = orderService.GetOrder(command);
+    System.Console.WriteLine($"id: {myOrder.OrderId}\nОписание: {myOrder.OrderDescription}\nЦена: {myOrder.OrderPrice}\nДата заказа: {myOrder.OrderDate}\nТип доставки: {myOrder.OrderDeliveryType}\nАдрес: {myOrder.OrderDeliveryAddress}");
+}
+System.Console.WriteLine("Чтобы изменить описание заказа наберите <change> или <ch>");
+command = Console.ReadLine();
+if(command.Equals("change") || command.Equals("ch"))
+{
+    System.Console.WriteLine("Введите id или описание заказа!");
+    Order changeOrder = orderService.ChangeDescription(Console.ReadLine());
+    System.Console.WriteLine($"id: {changeOrder.OrderId}\nОписание: {changeOrder.OrderDescription}\nЦена: {changeOrder.OrderPrice}\nДата заказа: {changeOrder.OrderDate}\nТип доставки: {changeOrder.OrderDeliveryType}\nАдрес: {changeOrder.OrderDeliveryAddress}");
+}
+
+System.Console.WriteLine("Чтобы удалить заказ наберите <Del>");
+command = Console.ReadLine();
+if(command.Equals("Del"))
+{
+    System.Console.WriteLine("Введите ордер для удаления заказа: ");
+    orderService.DeleteOrder(Console.ReadLine());
+}
+
 }else System.Console.WriteLine("Не известная команда!");
 
 void CreateClient()
 {
-    ClientService clientService = new();
     System.Console.WriteLine("Введите имя: ");
     string firstName = Console.ReadLine();
     System.Console.WriteLine("Введите Фамилию: ");
@@ -69,7 +108,7 @@ void CreateClient()
     Gender gender = (Gender)int.Parse(genderInpurStr);
     short age = short.Parse(ageInputStr);
 
-    Client newClient = clientService.CreateClient( new ClientInfo()
+    Client newClient = service.CreateClient( new ClientInfo()
     {
         FirstName = firstName,
         LastName = lastName,
@@ -82,15 +121,9 @@ void CreateClient()
         UserPassword = userPassword
         
     });
-
-    Console.WriteLine("Client Name: {0}",string.Join(' ', newClient.FirstName, newClient.MiddleName, newClient.LastName));
-
-    Console.WriteLine("Client Age: {0}\nClient Passport Number: {1}\nGender: {2}\nPhone: {3}\ne-mail: {4}", 
-    newClient.Age, newClient.PassportNumber, newClient.Gender, newClient.UserPhone, newClient.UserEmail);
 }
 void GetOrderDetails()
 {
-    OrderService orderService = new();
     
     System.Console.WriteLine("Введите идентификатор заказа:");
     string orderIdStr = Console.ReadLine();
@@ -100,7 +133,7 @@ void GetOrderDetails()
     string orderPriceStr = Console.ReadLine();
     Console.WriteLine("Введите дату заказа (в формате дд.мм.гггг):");
     DateTime orderDate = Convert.ToDateTime(Console.ReadLine());
-    System.Console.WriteLine("Введите тип доставки:");
+    System.Console.WriteLine("Введите тип доставки: <1 - express, 0 - free>");
     string orderDeliveryTypeStr = Console.ReadLine();
     System.Console.WriteLine("Введите адрес доставки:");
     string orderDeliveryAddress = Console.ReadLine();

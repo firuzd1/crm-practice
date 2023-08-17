@@ -70,7 +70,9 @@ command = Console.ReadLine();
 if(command.Equals("change") || command.Equals("ch"))
 {
     System.Console.WriteLine("Введите id или описание заказа!");
-    Order? changeOrder = orderService.ChangeDescription(Console.ReadLine());
+    string getId = Console.ReadLine();
+    string getNewDasciption = Console.ReadLine();
+    Order? changeOrder = orderService.ChangeDescription(getId, getNewDasciption);
     System.Console.WriteLine($"id: {changeOrder.OrderId}\nОписание: {changeOrder.OrderDescription}\nЦена: {changeOrder.OrderPrice}\nДата заказа: {changeOrder.OrderDate}\nТип доставки: {changeOrder.OrderDeliveryType}\nАдрес: {changeOrder.OrderDeliveryAddress}");
 }
 

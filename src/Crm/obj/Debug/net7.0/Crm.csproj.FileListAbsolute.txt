@@ -58,3 +58,8 @@ E:\CRM\crm-practice\src\Crm\obj\Debug\net7.0\refint\Crm.dll
 E:\CRM\crm-practice\src\Crm\obj\Debug\net7.0\Crm.pdb
 E:\CRM\crm-practice\src\Crm\obj\Debug\net7.0\Crm.genruntimeconfig.cache
 E:\CRM\crm-practice\src\Crm\obj\Debug\net7.0\ref\Crm.dll
+E:\CRM\crm-practice\src\Crm\bin\Debug\net7.0\Crm.BusinessLogic.dll
+E:\CRM\crm-practice\src\Crm\bin\Debug\net7.0\Crm.DataAccess.dll
+E:\CRM\crm-practice\src\Crm\bin\Debug\net7.0\Crm.DataAccess.pdb
+E:\CRM\crm-practice\src\Crm\bin\Debug\net7.0\Crm.BusinessLogic.pdb
+E:\CRM\crm-practice\src\Crm\obj\Debug\net7.0\Crm.csproj.CopyComplete

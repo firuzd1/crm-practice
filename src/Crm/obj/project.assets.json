@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "Crm.BusinessLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Crm.DataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Crm.BusinessLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Crm.BusinessLogic.dll": {}
+        }
+      },
+      "Crm.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Crm.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Crm.DataAccess.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Crm.BusinessLogic/1.0.0": {
+      "type": "project",
+      "path": "../Crm.BusinessLogic/Crm.BusinessLogic.csproj",
+      "msbuildProject": "../Crm.BusinessLogic/Crm.BusinessLogic.csproj"
+    },
+    "Crm.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Crm.DataAccess/Crm.DataAccess.csproj",
+      "msbuildProject": "../Crm.DataAccess/Crm.DataAccess.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "Crm.BusinessLogic >= 1.0.0",
+      "Crm.DataAccess >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\user\\.nuget\\packages\\": {}
@@ -31,7 +69,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
+              "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj"
+            },
+            "E:\\CRM\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj": {
+              "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

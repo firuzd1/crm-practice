@@ -1,4 +1,4 @@
-namespace Crm.DataAccess;
+namespace Crm.Entities;
 
 public readonly struct OrderInfo
 {
@@ -8,5 +8,4 @@ public readonly struct OrderInfo
     public readonly DateTime OrderDate {get; init; }
     public readonly DeliveryType OrderDeliveryType { get; init; }
     public readonly string OrderDeliveryAddress { get; init; }
-    public readonly OrderState NewOrderState { get; init; }
 }

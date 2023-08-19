@@ -1,6 +1,4 @@
-using System.Dynamic;
-using Crm.DataAccess;
-using Microsoft.VisualBasic;
+namespace Crm.Entities;
 
 public sealed class Order
 {
@@ -8,7 +6,6 @@ public sealed class Order
     public string? orderDescription;
     public decimal orderPrise;
     private string? _orderDeliveryAddress;
-    private OrderState _orderState;
     public required int OrderId 
     { 
         get
@@ -31,7 +28,7 @@ public sealed class Order
     public string OrderDescription 
     {
         get => orderDescription ?? string.Empty;
-        set => orderDescription = value is {Length: < 2} ? throw new Exception("Описание не может содержать один символ!") : orderDescription = value;
+        init => orderDescription = value is {Length: < 2} ? throw new Exception("Описание не может содержать один символ!") : orderDescription = value;
     }
     public decimal OrderPrice 
     {
@@ -44,8 +41,5 @@ public sealed class Order
     {
         get => _orderDeliveryAddress ?? string.Empty;
         init => _orderDeliveryAddress = value is {Length: >= 0} ? value : throw new ArgumentOutOfRangeException(nameof(value));
-    }
-   public required OrderState MyOrderState{ get; set; }
+    } 
 }
-
-

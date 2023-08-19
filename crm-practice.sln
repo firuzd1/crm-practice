@@ -7,10 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCE35716-EBE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm", "src\Crm\Crm.csproj", "{51C0AF30-03F8-4626-94CD-67700BA3BF47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.DataAccess", "src\Crm.DataAccess\Crm.DataAccess.csproj", "{9F53D055-74CA-4535-B264-0CC8681737F3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.BusinessLogic", "src\Crm.BusinessLogic\Crm.BusinessLogic.csproj", "{B751156C-4222-44E8-9E6E-696EB5BD83AC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,18 +20,8 @@ Global
 		{51C0AF30-03F8-4626-94CD-67700BA3BF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51C0AF30-03F8-4626-94CD-67700BA3BF47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51C0AF30-03F8-4626-94CD-67700BA3BF47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F53D055-74CA-4535-B264-0CC8681737F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F53D055-74CA-4535-B264-0CC8681737F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F53D055-74CA-4535-B264-0CC8681737F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F53D055-74CA-4535-B264-0CC8681737F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B751156C-4222-44E8-9E6E-696EB5BD83AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B751156C-4222-44E8-9E6E-696EB5BD83AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B751156C-4222-44E8-9E6E-696EB5BD83AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B751156C-4222-44E8-9E6E-696EB5BD83AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{51C0AF30-03F8-4626-94CD-67700BA3BF47} = {BCE35716-EBE1-42E2-B2E6-BD0652D581C1}
-		{9F53D055-74CA-4535-B264-0CC8681737F3} = {BCE35716-EBE1-42E2-B2E6-BD0652D581C1}
-		{B751156C-4222-44E8-9E6E-696EB5BD83AC} = {BCE35716-EBE1-42E2-B2E6-BD0652D581C1}
 	EndGlobalSection
 EndGlobal

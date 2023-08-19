@@ -1,4 +1,5 @@
-namespace Crm.DataAccess;
+namespace Crm.Entities;
+
 
 
 public sealed class Client
@@ -6,7 +7,7 @@ public sealed class Client
     private string? _userFirstName;
     private string? _userLastName;
     private string? _userMiddleName;
-    private short userAge;
+    public short userAge;
     private string? _userPassportNumber; 
     private string? _userPhone;
     private string? _userEmail;
@@ -14,12 +15,12 @@ public sealed class Client
     public required string FirstName 
     {
         get => _userFirstName ?? string.Empty;
-        set => _userFirstName = value is {Length: > 2} ? value : throw new Exception("Поле First name не может содержать только один символ!");
+        init => _userFirstName = value is {Length: > 2} ? value : throw new Exception("Поле First name не может содержать только один символ!");
     }
     public required string LastName
     {
         get => _userLastName ?? string.Empty;
-        set => _userLastName = value is {Length: > 2} ? value : throw new Exception("Поле Last name не может содержать только один символ!");
+        init => _userLastName = value is {Length: > 2} ? value : throw new Exception("Поле Last name не может содержать только один символ!");
     }
     public required string MiddleName
     {

@@ -1,0 +1,12 @@
+E:\CRM\crm-practice\src\Crm.DataAccess\bin\Debug\net7.0\Crm.DataAccess.deps.json
+E:\CRM\crm-practice\src\Crm.DataAccess\bin\Debug\net7.0\Crm.DataAccess.dll
+E:\CRM\crm-practice\src\Crm.DataAccess\bin\Debug\net7.0\Crm.DataAccess.pdb
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.csproj.AssemblyReference.cache
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.AssemblyInfoInputs.cache
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.AssemblyInfo.cs
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.csproj.CoreCompileInputs.cache
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.dll
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\refint\Crm.DataAccess.dll
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.pdb
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\ref\Crm.DataAccess.dll

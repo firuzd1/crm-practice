@@ -1,10 +1,10 @@
 namespace Crm.BusinessLogic;
 using Crm.DataAccess;
 
-interface IClientService
+public interface IClientService
 {
-    public Client CreateClient(ClientInfo clientInfo);
-    public Client? GetClient(string firstName, string lastName);
-    public Client? ChangeClientName(string name, string lastName, string newFirstName, string newLastname);
-    public int userStat();
+    public int GetClientCount();
+    public bool CreateClient(ClientInfo clientInfo);
+    public ClientInfo? GetClient(string firstName, string lastName);
+    public bool ChangeClientName(string name, string lastName, string newFirstName, string newLastname);
 }

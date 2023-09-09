@@ -1,77 +1,59 @@
-using System;
-using System.Diagnostics.Contracts;
 using Crm.DataAccess;
 namespace Crm.BusinessLogic;
+
+public static class GenderExtention
+{
+     public static Gender ToGenderEnum(this string genderStr)
+        => Enum.Parse<Gender>(genderStr);
+     
+
+}
 
 public sealed class ClientService : IClientService
 {
     private readonly List<Client> _clientList;
+    private long _id = 0;
 
     public ClientService()
     {
         _clientList = new();
     }
-    public Client CreateClient(ClientInfo clientInfo)
+    private readonly IClientRepository _clientRepository;
+    public ClientService(IClientRepository clientRepository)
+    {
+        _clientRepository = clientRepository;
+    }
+
+    public int GetClientCount() => _clientRepository.GetClientCount();
+    public bool CreateClient(ClientInfo clientInfo)
     {
         Client newClient = new Client()
         {
+            Id = _id++,
             FirstName = clientInfo.FirstName,
             LastName = clientInfo.LastName,
             MiddleName = clientInfo.MiddleName,
             Age = clientInfo.Age,
             PassportNumber = clientInfo.PassportNumber,
-            Gender = clientInfo.Gender,
-            UserPhone = clientInfo.UserPhone,
-            UserEmail = clientInfo.UserEmail,
-            UserPassword = clientInfo.UserPassword
+            Gender = clientInfo.Gender.ToGenderEnum(),
+            UserPhone = clientInfo.Phone,
+            UserEmail = clientInfo.Email,
+            UserPassword = clientInfo.Password
         };
-        _clientList.Add(newClient);
 
-        return newClient;
+        return _clientRepository.CreateClient(newClient);
     }
 
-    public Client? GetClient(string firstName, string lastName)
+    public ClientInfo? GetClient(string firstName, string lastName)
     {
-        if (firstName is not { Length: > 0 })
-            throw new ArgumentNullException(nameof(firstName));
-        if (lastName is not { Length: > 0 })
-            throw new ArgumentNullException(nameof(lastName));
-        foreach (Client client in _clientList)
-        {
-            if (client.FirstName == firstName && client.LastName == lastName)
-            {
-                return client;
-            }
-        }
-        return null;
+       Client client = _clientRepository.GetClient(firstName, lastName);
+       ClientInfo clientInfo = client.ToClientInfo();
+       return clientInfo;
     }
-
-    public Client? ChangeClientName(string name, string lastName, string newFirstName, string newLastname)
+    public bool ChangeClientName(string name, string lastName, string newFirstName, string newLastname)
     {
-        if(name is not {Length: > 0})
-            throw new ArgumentNullException(nameof(name));
-        if(lastName is not {Length: > 0})
-            throw new ArgumentNullException(nameof(lastName));
-        foreach(Client client in _clientList)
-        {
-            if(client.FirstName.Equals(name) && client.LastName.Equals(lastName))
-            {
-                client.FirstName = newFirstName;
-                client.LastName = newLastname;
-                return client;
-            }
-            else throw new Exception("Пользователь не найден!");
-        }
-        return null;
-    }
-    public int userStat()
-    {
-        int count = 0;
-        foreach(Client registratedClients in _clientList)
-        {
-            count++;
-        }
-        return count;
+        return _clientRepository.ChangeClientName(name, lastName,newFirstName, newLastname);
     }
 
 }
+

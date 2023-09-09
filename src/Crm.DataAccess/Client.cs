@@ -6,11 +6,13 @@ public sealed class Client
     private string? _userFirstName;
     private string? _userLastName;
     private string? _userMiddleName;
-    private short userAge;
+    private short _userAge;
     private string? _userPassportNumber; 
     private string? _userPhone;
     private string? _userEmail;
     private string? _userPassword;
+
+    public long Id { get; set; }
     public required string FirstName 
     {
         get => _userFirstName ?? string.Empty;
@@ -30,13 +32,13 @@ public sealed class Client
     {
         get
         {
-            return userAge;
+            return _userAge;
         }
         init
         {
-            if(userAge < 0)
+            if(_userAge < 0)
                 throw new Exception("Введенно нулевое значение возвроста");
-            else userAge = value;
+            else _userAge = value;
         }
     }
     public required string PassportNumber

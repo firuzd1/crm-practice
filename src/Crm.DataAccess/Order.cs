@@ -1,15 +1,15 @@
-using System.Dynamic;
 using Crm.DataAccess;
-using Microsoft.VisualBasic;
 
 public sealed class Order
 {
-    private int _orderId;
-    public string? orderDescription;
-    public decimal orderPrise;
+    private long _orderId;
+    private string? orderDescription;
+    private decimal orderPrise;
     private string? _orderDeliveryAddress;
     private OrderState _orderState;
-    public required int OrderId 
+
+
+    public required long Id 
     { 
         get
         {
@@ -17,7 +17,7 @@ public sealed class Order
                 throw new ArgumentNullException(nameof(_orderId));
             else return _orderId;
         }
-        init
+        set
         {
             if(_orderId < 0)
             {
@@ -28,19 +28,19 @@ public sealed class Order
             else _orderId = value;
         }
     }
-    public string OrderDescription 
+    public string Description 
     {
         get => orderDescription ?? string.Empty;
         set => orderDescription = value is {Length: < 2} ? throw new Exception("Описание не может содержать один символ!") : orderDescription = value;
     }
-    public decimal OrderPrice 
+    public decimal Price 
     {
         get => orderPrise;
         init => orderPrise = value >= 0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
     }
-    public DateTime OrderDate { get; set; }
-    public required DeliveryType OrderDeliveryType { get; init; }
-    public required string OrderDeliveryAddress
+    public DateTime Date { get; set; }
+    public required DeliveryType DeliveryType { get; init; }
+    public required string DeliveryAddress
     {
         get => _orderDeliveryAddress ?? string.Empty;
         init => _orderDeliveryAddress = value is {Length: >= 0} ? value : throw new ArgumentOutOfRangeException(nameof(value));

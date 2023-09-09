@@ -2,16 +2,16 @@ using Crm.DataAccess;
 namespace Crm.BusinessLogic;
 
 
-interface IOrderService
+public interface IOrderService
 {
-    public Order CreateOrder(OrderInfo orderInfo);
-    public Order GetOrder(string myOrderDescription);
-    public Order? ChangeDescription(string find, string newDescription);
-    public void DeleteOrder(string forDelete); 
-    public bool ChangeState(string id, string index);
-    public int OrderStat();
-    public int PendingStatistics();
-    public int ApprovedStatistics();
-    public int CancelledStatistics();
+    public bool CreateOrder(OrderInfo orderInfo);
+    public OrderInfo? GetOrder(string myOrderDescription);
+    public bool ChangeDescription(string find, string newDescription);
+    public bool DeleteOrder(string forDelete); 
+    public bool UpdateOrderState(long orderId, OrderState newOrderState)
+    {
+        throw new NotImplementedException();
+    }
+    public int GetOrderCount();
 
 }

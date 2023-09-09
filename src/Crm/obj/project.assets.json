@@ -41,8 +41,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "Crm.BusinessLogic >= 1.0.0",
-      "Crm.DataAccess >= 1.0.0"
+      "Crm.BusinessLogic >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -72,9 +71,6 @@
           "projectReferences": {
             "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
               "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj"
-            },
-            "E:\\CRM\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj": {
-              "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj"
             }
           }
         }

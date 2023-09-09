@@ -138,9 +138,6 @@
             "projectReferences": {
               "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
                 "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj"
-              },
-              "E:\\CRM\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj": {
-                "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj"
               }
             }
           }

@@ -8,4 +8,10 @@ public static class OrderServiceFactory
         IOrderRepository orderRepository = new OrderRepository();
         return new OrderService(orderRepository);
     }
+
+    public static IOrderService CreatePostgreOrderService()
+    {
+        IOrderRepository postgreOrderRepository = new PosgreSqlOrderRepository();
+        return new OrderService(postgreOrderRepository);
+    }
 }

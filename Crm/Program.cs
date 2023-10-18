@@ -3,6 +3,8 @@ using Crm.DataAccess;
 
 IClientService clientService = ClientServiceFactory.CreateClientService();
 IOrderService orderService = OrderServiceFactory.CreateOrderService();
+IOrderService orderService1 = OrderServiceFactory.CreatePostgreOrderService();
+IStatisticsService statisticsService = StatisticsServiceFactory.CreateStatisticsService();
 
 
 System.Console.WriteLine("Чтобы создать пользователя наберите <Create client>, чтобы пропустить нажмите <enter> ");
@@ -61,72 +63,83 @@ if (command.Equals("Create order"))
         System.Console.WriteLine("Creating order...");
         count--;
     }
-
-    System.Console.WriteLine("Чтобы найти заказ наберите <yes>, чтобы пропустить нажмите <enter>");
-    command = Console.ReadLine();
-    if (command.Equals("yes"))
-    {
-        System.Console.WriteLine("Введите описание заказа: ");
-        command = Console.ReadLine();
-        var myOrder = orderService.GetOrder(command);
-        System.Console.WriteLine($"id: {myOrder.Value.Id}\nОписание: {myOrder.Value.Description}\nЦена: {myOrder.Value.Price}\nДата заказа: {myOrder.Value.Date}\nТип доставки: {myOrder.Value.DeliveryType}\nАдрес: {myOrder.Value.DeliveryAddress}\nСтатус заказа: {myOrder.Value.NewOrderState}");
-    }
-    System.Console.WriteLine("Чтобы изменить описание заказа наберите <change> или <ch>, чтобы пропустить нажмите <enter>");
-    command = Console.ReadLine();
-    if (command.Equals("change") || command.Equals("ch"))
-    {
-        System.Console.WriteLine("Введите id или описание заказа!");
-        string getId = Console.ReadLine();
-        string getNewDasciption = Console.ReadLine();
-        var changeOrder = orderService.ChangeDescription(getId, getNewDasciption);
-        if (changeOrder)
-        {
-            System.Console.WriteLine("Изменения успешно сохранены!");
-        }
-    }
-
-    System.Console.WriteLine("Чтобы удалить заказ наберите <Del>, чтобы пропустить нажмите <enter>");
-    command = Console.ReadLine();
-    if (command.Equals("Del"))
-    {
-        System.Console.WriteLine("Введите ордер для удаления заказа: ");
-        orderService.DeleteOrder(Console.ReadLine());
-    }
-
-    System.Console.WriteLine("Чтобы изменить состояние заказа введите <yes>, чтобы пропустить нажмите <enter>");
-    command = Console.ReadLine();
-    if (command.Equals("yes"))
-    {
-        System.Console.WriteLine("Введите id заказа");
-        long command1 = long.Parse(Console.ReadLine());
-        System.Console.WriteLine("чтобы изменить состояние заказа введите: <0> - Ожидание, <1> - одобренный <2> - отменён");
-        OrderState command2 = Enum.Parse<OrderState>(Console.ReadLine());
-        bool result = orderService.UpdateOrderState(command1, command2);
-        if (!result)
-            throw new Exception("пользователь не найден!");
-        else System.Console.WriteLine("Состояние заказа успешно изменено!");
-    }
-
 }
+
+System.Console.WriteLine("Чтобы найти заказ наберите <yes>, чтобы пропустить нажмите <enter>");
+command = Console.ReadLine();
+if (command.Equals("yes"))
+{
+    System.Console.WriteLine("Введите описание заказа: ");
+    command = Console.ReadLine();
+    var myOrder = orderService.GetOrder(command);
+    System.Console.WriteLine($"id: {myOrder.Value.Id}\nОписание: {myOrder.Value.Description}\nЦена: {myOrder.Value.Price}\nДата заказа: {myOrder.Value.Date}\nТип доставки: {myOrder.Value.DeliveryType}\nАдрес: {myOrder.Value.DeliveryAddress}\nСтатус заказа: {myOrder.Value.NewOrderState}");
+}
+System.Console.WriteLine("Чтобы изменить описание заказа наберите <change> или <ch>, чтобы пропустить нажмите <enter>");
+command = Console.ReadLine();
+if (command.Equals("change") || command.Equals("ch"))
+{
+    System.Console.WriteLine("Введите id или описание заказа!");
+    string getId = Console.ReadLine();
+    string getNewDasciption = Console.ReadLine();
+    var changeOrder = orderService.ChangeDescription(getId, getNewDasciption);
+    if (changeOrder)
+    {
+        System.Console.WriteLine("Изменения успешно сохранены!");
+    }
+}
+
+System.Console.WriteLine("Чтобы удалить заказ наберите <Del>, чтобы пропустить нажмите <enter>");
+command = Console.ReadLine();
+if (command.Equals("Del"))
+{
+    System.Console.WriteLine("Введите ордер для удаления заказа: ");
+    command = Console.ReadLine();
+    orderService.DeleteOrder(command);
+    orderService1.DeleteOrder(command);
+}
+System.Console.WriteLine("Чтобы изменить состояние заказа введите <yes>, чтобы пропустить нажмите <enter>");
+command = Console.ReadLine();
+if (command.Equals("yes"))
+{
+    System.Console.WriteLine("Введите id заказа");
+    int command1 = int.Parse(Console.ReadLine());
+    System.Console.WriteLine("чтобы изменить состояние заказа введите: <0> - Ожидание, <1> - одобренный <2> - отменён");
+    OrderState command2 = Enum.Parse<OrderState>(Console.ReadLine());
+    bool result = orderService1.UpdateOrderState(command1, command2);
+    if (!result)
+        throw new Exception("пользователь не найден!");
+    else System.Console.WriteLine("Состояние заказа успешно изменено!");
+}
+
+
 else System.Console.WriteLine("Не известная команда!");
 
-/*
+
 System.Console.WriteLine("Чтобы перейти в раздел статистики наберите <stat>, чтобы пропустить нажмите <enter> ");
 command = Console.ReadLine();
 if (command.Equals("stat"))
 {
-    int statistics = clientService.GetClientCount();
+    int statistics = statisticsService.GetClientsCount();
     System.Console.WriteLine("Количество созданных пользователей: " + statistics);
-    statistics = orderService.GetOrderCount();
+    statistics = statisticsService.GetOrderCount();
     System.Console.WriteLine("Количество созданных заказов: " + statistics);
-    statistics = orderService.PendingStatistics();
-    System.Console.WriteLine("Количество заказов в ожидании: " + statistics);
-    statistics = orderService.ApprovedStatistics();
-    System.Console.WriteLine("Количество подтверждённых заказов: " + statistics);
-    statistics = orderService.CancelledStatistics();
-    System.Console.WriteLine("Количество отменнёных заказов: " + statistics);
 }
-*/
+
+System.Console.WriteLine("Чтобы посмотреть количество <в ожидании> наберите 0, <в подтверждённых> наберите 1, <отменёных> наберите 2");
+command = Console.ReadLine();
+if (command.Equals("0"))
+{
+    System.Console.WriteLine("в ожидании: " + statisticsService.GetOrderCount("0"));
+}
+else if (command.Equals("1"))
+{
+    System.Console.WriteLine("подтверждённых: " + statisticsService.GetOrderCount("1"));
+}
+else if (command.Equals("2"))
+{
+    System.Console.WriteLine("отменённых: " + statisticsService.GetOrderCount("2"));
+}
+
 void CreateClient()
 {
     System.Console.WriteLine("Введите имя: ");
@@ -211,6 +224,17 @@ void GetOrderDetails()
         DeliveryAddress = orderDeliveryAddress,
         NewOrderState = OrderStateStr
     });
+
+    orderService1.CreateOrder(new OrderInfo()
+    {
+        Id = orderId,
+        Description = orderDescription,
+        Price = orderPrice,
+        Date = orderDate,
+        DeliveryType = orderDeliveryTypeStr,
+        DeliveryAddress = orderDeliveryAddress,
+        NewOrderState = OrderStateStr
+    });
 }
 bool ValidateClient(
     string firstname,
@@ -280,11 +304,11 @@ bool ValidateOrder(
     bool isOrderPriceCorrect = decimal.TryParse(orderPriceStr, out decimal orderPrice);
     if (!isOrderPriceCorrect)
         errors.Add("Не указанна цена!");
-    if (orderDeliveryType is not "0" || orderDeliveryType is not "1")
+    if (orderDeliveryType is not "0" && orderDeliveryType is not "1")
         errors.Add("Выберите корректно доставку (0 - free, 1 - express)!");
     if (orderDeliveryAddress is { Length: 0 })
         errors.Add("Поле адресс является объязательным!");
-    if (OrderState is not "0" || OrderState is not "1" || OrderState is not "2")
+    if (OrderState is not "0" && OrderState is not "1" && OrderState is not "2")
         errors.Add("Поле статус заказа введены не корректно!!");
 
     if (errors is { Count: > 0 })

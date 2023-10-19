@@ -5,8 +5,10 @@ public static class StatisticsServiceFactory
 {
     public static IStatisticsService CreateStatisticsService()
     {
-        IClientRepository clientRepository = new ClientRepository();
-        IOrderRepository orderRepository = new OrderRepository();
-        return new StatisticsService(orderRepository,clientRepository);
+        //IClientRepository clientRepository = new ClientRepository();
+        //IOrderRepository orderRepository = new OrderRepository();
+        IClientRepository clientRepository = new PostgreSqlClientRepository();
+        IOrderRepository orderRepository1 = new PosgreSqlOrderRepository();
+        return new StatisticsService(orderRepository1, clientRepository);
     }
 }

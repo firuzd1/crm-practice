@@ -1,3 +1,5 @@
+
+/*
 namespace Crm.DataAccess;
 
 
@@ -12,32 +14,33 @@ public sealed class OrderRepository : IOrderRepository
     }
     public bool Create(Order order)
     {
-        if(order is not null)
-        {    
+        if (order is not null)
+        {
             _orders.Add(order);
             return true;
-        }else return false;
+        }
+        else return false;
     }
 
     public bool ChangeDescription(string find, string newDescription)
     {
         bool check = int.TryParse(find, out int id);
-        if(!check)
+        if (!check)
             return false;
 
         Order? order = _orders.Find(o => o.Id.Equals(id));
-            if(order is not null)
-            {
-                order.Description = newDescription;
-                return true;
-            }
+        if (order is not null)
+        {
+            order.Description = newDescription;
+            return true;
+        }
         return false;
     }
-    public Order? GetOrder(string myOrderDescription)
+    public Order GetOrder(string myOrderDescription)
     {
-         if (myOrderDescription is not { Length: > 0 })
+        if (myOrderDescription is not { Length: > 0 })
             throw new ArgumentNullException(nameof(myOrderDescription));
- 
+
         Order? myOrder = _orders.Find(o => o.Description.Equals(myOrderDescription));
         {
             if (myOrder is not null)
@@ -53,21 +56,22 @@ public sealed class OrderRepository : IOrderRepository
     public bool UpdateOrderState(long orderId, OrderState orderState)
     {
         Order? order = _orders.Find(o => o.Id.Equals(orderId));
-        if(order is null) return false;
+        if (order is null) return false;
 
         order.MyOrderState = orderState;
         return true;
     }
     public bool DeleteOrder(string forDelete)
     {
-         bool idForDel = int.TryParse(forDelete, out int DelId);
-        if(!idForDel)
+        bool idForDel = int.TryParse(forDelete, out int DelId);
+        if (!idForDel)
             return false;
 
         Order? orderForDelete = _orders.Find(o => o.Id.Equals(DelId));
 
-        if(orderForDelete != null)
+        if (orderForDelete != null)
             _orders.Remove(orderForDelete);
-            return true;
+        return true;
     }
 }
+*/

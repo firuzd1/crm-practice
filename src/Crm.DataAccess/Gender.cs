@@ -2,6 +2,6 @@ namespace Crm.DataAccess;
 
 public enum Gender
 {
-    Male,
-    Female
+    male = 0,
+    female = 1
 }

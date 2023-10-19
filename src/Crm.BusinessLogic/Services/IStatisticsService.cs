@@ -7,5 +7,5 @@ public interface IStatisticsService
 {
     public int GetClientsCount();
     public int GetOrderCount();
-    public int GetOrderCount(OrderState orderState);
+    public int GetOrderCount(string orderState);
 }

@@ -2,7 +2,7 @@ namespace Crm.DataAccess;
 
 public enum OrderState
 {
-    Pending = 0,
-    Approved = 1,
-    Cancelled = 2
+    pending = 0,
+    approved = 1,
+    cancelled = 2
 }

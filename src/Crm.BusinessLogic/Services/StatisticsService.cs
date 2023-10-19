@@ -19,5 +19,7 @@ public sealed class StatisticsService : IStatisticsService
 
     public int GetOrderCount() => _orderRepository.GetOrderCount();
 
-    public int GetOrderCount(OrderState orderState) => _orderRepository.GetOrderCount(orderState);
+    public int GetOrderCount(string orderState) => _orderRepository.GetOrderCount(orderState.ToOrderEnum());
+
+
 }

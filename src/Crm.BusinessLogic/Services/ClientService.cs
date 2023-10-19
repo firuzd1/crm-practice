@@ -3,10 +3,8 @@ namespace Crm.BusinessLogic;
 
 public static class GenderExtention
 {
-     public static Gender ToGenderEnum(this string genderStr)
-        => Enum.Parse<Gender>(genderStr);
-     
-
+    public static Gender ToGenderEnum(this string genderStr)
+       => Enum.Parse<Gender>(genderStr);
 }
 
 public sealed class ClientService : IClientService
@@ -46,13 +44,13 @@ public sealed class ClientService : IClientService
 
     public ClientInfo? GetClient(string firstName, string lastName)
     {
-       Client client = _clientRepository.GetClient(firstName, lastName);
-       ClientInfo clientInfo = client.ToClientInfo();
-       return clientInfo;
+        Client client = _clientRepository.GetClient(firstName, lastName);
+        ClientInfo clientInfo = client.ToClientInfo();
+        return clientInfo;
     }
     public bool ChangeClientName(string name, string lastName, string newFirstName, string newLastname)
     {
-        return _clientRepository.ChangeClientName(name, lastName,newFirstName, newLastname);
+        return _clientRepository.ChangeClientName(name, lastName, newFirstName, newLastname);
     }
 
 }

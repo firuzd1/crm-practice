@@ -1,8 +1,9 @@
 ﻿using Crm.BusinessLogic;
 using Crm.DataAccess;
 
-IClientService clientService = ClientServiceFactory.CreateClientService();
-IOrderService orderService = OrderServiceFactory.CreateOrderService();
+//IClientService clientService = ClientServiceFactory.CreateClientService();
+IClientService PostgreClientService = ClientServiceFactory.CreatePostgreClientService();
+//IOrderService orderService = OrderServiceFactory.CreateOrderService();
 IOrderService orderService1 = OrderServiceFactory.CreatePostgreOrderService();
 IStatisticsService statisticsService = StatisticsServiceFactory.CreateStatisticsService();
 
@@ -21,36 +22,37 @@ if (command.Equals("Create client"))
         System.Console.WriteLine("Creating client...");
         count--;
     }
-    System.Console.WriteLine("Чтобы получить пользователя наберите <yes>, чтобы пропустить нажмите <enter>");
-    command = Console.ReadLine();
-    if (command.Equals("yes"))
-    {
-        System.Console.WriteLine("Введите имя затем нажав <enter> введите фамилию: ");
-        var myClient = clientService.GetClient(Console.ReadLine(), Console.ReadLine());
+}
+System.Console.WriteLine("Чтобы получить пользователя наберите <yes>, чтобы пропустить нажмите <enter>");
+command = Console.ReadLine();
+if (command.Equals("yes"))
+{
+    System.Console.WriteLine("Введите имя затем нажав <enter> введите фамилию: ");
+    var myClient = PostgreClientService.GetClient(Console.ReadLine(), Console.ReadLine());
 
-        System.Console.WriteLine($"Name: {myClient.Value.FirstName}\nLast Name: {myClient.Value.LastName}\nMiddle Name: {myClient.Value.MiddleName}\nAge: {myClient.Value.Age}\nPassport Number: {myClient.Value.PassportNumber}\nPhone Number: {myClient.Value.Phone}");
-    }
-    System.Console.WriteLine("Чтобы изменить имя и фамилию пользователя наберите <yes>, чтобы пропустить нажмите <enter>");
-    command = Console.ReadLine();
-    if (command.Equals("yes"))
+    System.Console.WriteLine($"Name: {myClient.Value.FirstName}\nLast Name: {myClient.Value.LastName}\nMiddle Name: {myClient.Value.MiddleName}\nAge: {myClient.Value.Age}\nPassport Number: {myClient.Value.PassportNumber}\nPhone Number: {myClient.Value.Phone}");
+}
+System.Console.WriteLine("Чтобы изменить имя и фамилию пользователя наберите <yes>, чтобы пропустить нажмите <enter>");
+command = Console.ReadLine();
+if (command.Equals("yes"))
+{
+    System.Console.WriteLine("Наберите имя и фамилию пользователя: ");
+    System.Console.WriteLine("Введите имя: ");
+    string searchFirstName = Console.ReadLine();
+    System.Console.WriteLine("Введите фамилию: ");
+    string searchLastName = Console.ReadLine();
+    System.Console.WriteLine("Теперь введите изменения: ");
+    System.Console.WriteLine("Имя: ");
+    string newFirstName = Console.ReadLine();
+    System.Console.WriteLine("Фамилия: ");
+    string newLastName = Console.ReadLine();
+    var ChangeClientName = PostgreClientService.ChangeClientName(searchFirstName, searchLastName, newFirstName, newLastName);
+    if (ChangeClientName)
     {
-        System.Console.WriteLine("Наберите имя и фамилию пользователя: ");
-        System.Console.WriteLine("Введите имя: ");
-        string searchFirstName = Console.ReadLine();
-        System.Console.WriteLine("Введите фамилию: ");
-        string searchLastName = Console.ReadLine();
-        System.Console.WriteLine("Теперь введите изменения: ");
-        System.Console.WriteLine("Имя: ");
-        string newFirstName = Console.ReadLine();
-        System.Console.WriteLine("Фамилия: ");
-        string newLastName = Console.ReadLine();
-        var ChangeClientName = clientService.ChangeClientName(searchFirstName, searchLastName, newFirstName, newLastName);
-        if (ChangeClientName)
-        {
-            System.Console.WriteLine("изменения успешно сохранены!");
-        }
+        System.Console.WriteLine("изменения успешно сохранены!");
     }
 }
+
 System.Console.WriteLine("Чтобы оформить заказ наберите <Create order>, чтобы пропустить нажмите <enter>");
 command = Console.ReadLine();
 if (command.Equals("Create order"))
@@ -71,8 +73,8 @@ if (command.Equals("yes"))
 {
     System.Console.WriteLine("Введите описание заказа: ");
     command = Console.ReadLine();
-    var myOrder = orderService.GetOrder(command);
-    System.Console.WriteLine($"id: {myOrder.Value.Id}\nОписание: {myOrder.Value.Description}\nЦена: {myOrder.Value.Price}\nДата заказа: {myOrder.Value.Date}\nТип доставки: {myOrder.Value.DeliveryType}\nАдрес: {myOrder.Value.DeliveryAddress}\nСтатус заказа: {myOrder.Value.NewOrderState}");
+    var myOrder = orderService1.GetOrder(command);
+    System.Console.WriteLine($"id: {myOrder.Id}\nОписание: {myOrder.Description}\nЦена: {myOrder.Price}\nДата заказа: {myOrder.Date}\nТип доставки: {myOrder.DeliveryType}\nАдрес: {myOrder.DeliveryAddress}\nСтатус заказа: {myOrder.NewOrderState}");
 }
 System.Console.WriteLine("Чтобы изменить описание заказа наберите <change> или <ch>, чтобы пропустить нажмите <enter>");
 command = Console.ReadLine();
@@ -81,7 +83,7 @@ if (command.Equals("change") || command.Equals("ch"))
     System.Console.WriteLine("Введите id или описание заказа!");
     string getId = Console.ReadLine();
     string getNewDasciption = Console.ReadLine();
-    var changeOrder = orderService.ChangeDescription(getId, getNewDasciption);
+    var changeOrder = orderService1.ChangeDescription(getId, getNewDasciption);
     if (changeOrder)
     {
         System.Console.WriteLine("Изменения успешно сохранены!");
@@ -94,7 +96,7 @@ if (command.Equals("Del"))
 {
     System.Console.WriteLine("Введите ордер для удаления заказа: ");
     command = Console.ReadLine();
-    orderService.DeleteOrder(command);
+    //orderService.DeleteOrder(command);
     orderService1.DeleteOrder(command);
 }
 System.Console.WriteLine("Чтобы изменить состояние заказа введите <yes>, чтобы пропустить нажмите <enter>");
@@ -171,7 +173,7 @@ void CreateClient()
 
     short age = short.Parse(ageInputStr);
 
-    clientService.CreateClient(new ClientInfo()
+    PostgreClientService.CreateClient(new ClientInfo()
     {
         FirstName = firstName,
         LastName = lastName,
@@ -213,18 +215,18 @@ void GetOrderDetails()
 
     short orderId = short.Parse(orderIdStr);
     decimal orderPrice = decimal.Parse(orderPriceStr);
-
-    orderService.CreateOrder(new OrderInfo()
-    {
-        Id = orderId,
-        Description = orderDescription,
-        Price = orderPrice,
-        Date = orderDate,
-        DeliveryType = orderDeliveryTypeStr,
-        DeliveryAddress = orderDeliveryAddress,
-        NewOrderState = OrderStateStr
-    });
-
+    /*
+        orderService.CreateOrder(new OrderInfo()
+        {
+            Id = orderId,
+            Description = orderDescription,
+            Price = orderPrice,
+            Date = orderDate,
+            DeliveryType = orderDeliveryTypeStr,
+            DeliveryAddress = orderDeliveryAddress,
+            NewOrderState = OrderStateStr
+        });
+    */
     orderService1.CreateOrder(new OrderInfo()
     {
         Id = orderId,

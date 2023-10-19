@@ -31,9 +31,12 @@ public sealed class PostgreOrderService : IOrderService
         throw new NotImplementedException();
     }
 
-    public OrderInfo? GetOrder(string myOrderDescription)
+    public OrderInfo GetOrder(string myOrderDescription)
     {
-        throw new NotImplementedException();
+        Order order = _orderRepository.GetOrder(myOrderDescription);
+        OrderInfo orderInfo = order.ToOrderInfo();
+        return orderInfo;
+
     }
 
     public int GetOrderCount()

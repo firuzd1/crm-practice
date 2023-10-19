@@ -7,11 +7,11 @@ public static class OrderExtensions
     => Enum.Parse<DeliveryType>(DeliveryStr);
 
     public static OrderState ToOrderEnum(this string OrderStateStr)
-    =>Enum.Parse<OrderState>(OrderStateStr);
+    => Enum.Parse<OrderState>(OrderStateStr);
 
     public static OrderInfo ToOrderInfo(this Order order)
     {
-        OrderInfo orderInfo = new( 
+        OrderInfo orderInfo = new(
         order.Id,
         order.Description,
         order.Price,

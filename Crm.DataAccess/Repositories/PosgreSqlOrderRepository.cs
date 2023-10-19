@@ -2,11 +2,6 @@ using Npgsql;
 
 namespace Crm.DataAccess;
 
-public static class SqlHelper
-{
-    public static string ConnectionString = "Server=localhost;Port=5432;User ID=postgres;Password=12345;Database=Alif-academy-db";
-}
-
 public sealed class PosgreSqlOrderRepository : IOrderRepository
 {
     private readonly NpgsqlConnection _npgsqlConnection;
@@ -79,9 +74,42 @@ public sealed class PosgreSqlOrderRepository : IOrderRepository
         }
     }
 
-    public Order? GetOrder(string myOrderDescription)
+    public Order GetOrder(string myOrderDescription)
     {
-        throw new NotImplementedException();
+        Order order = null;
+        try
+        {
+            _npgsqlConnection.Open();
+
+            string selectQuery = "SELECT * FROM \"order\" WHERE description = @MyOrderDescription";
+            using NpgsqlCommand npgsqlCommand = new(selectQuery, _npgsqlConnection);
+
+            npgsqlCommand.Parameters.AddWithValue("@MyOrderDescription", myOrderDescription);
+
+            using NpgsqlDataReader npgsqlDataReader = npgsqlCommand.ExecuteReader();
+
+            if (npgsqlDataReader.Read())
+            {
+                order = new Order
+                {
+                    Id = npgsqlDataReader.GetInt32(0),
+                    Description = npgsqlDataReader.GetString(1),
+                    Price = npgsqlDataReader.GetDecimal(2),
+                    DeliveryType = (DeliveryType)npgsqlDataReader.GetInt32(3),
+                    DeliveryAddress = npgsqlDataReader.GetString(4),
+                    MyOrderState = (OrderState)npgsqlDataReader.GetInt32(5)
+                };
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Ошибка при выполнении запроса: " + ex.Message);
+        }
+        finally
+        {
+            _npgsqlConnection.Close();
+        }
+        return order;
     }
 
     public int GetOrderCount()

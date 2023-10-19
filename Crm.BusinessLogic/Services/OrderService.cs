@@ -32,7 +32,7 @@ public sealed class OrderService : IOrderService
         };
         return _orderRepository.Create(newOrder);
     }
-    public OrderInfo? GetOrder(string myOrderDescription)
+    public OrderInfo GetOrder(string myOrderDescription)
     {
         Order order = _orderRepository.GetOrder(myOrderDescription);
         OrderInfo orderInfo = order.ToOrderInfo();

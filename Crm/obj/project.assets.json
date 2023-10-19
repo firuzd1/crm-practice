@@ -616,19 +616,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\f.dostiev\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\crm-practice-main\\crm-practice-main\\src\\Crm\\Crm.csproj",
+      "projectUniqueName": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
       "projectName": "Crm",
-      "projectPath": "D:\\crm-practice-main\\crm-practice-main\\src\\Crm\\Crm.csproj",
-      "packagesPath": "C:\\Users\\f.dostiev\\.nuget\\packages\\",
-      "outputPath": "D:\\crm-practice-main\\crm-practice-main\\src\\Crm\\obj\\",
+      "projectPath": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "E:\\CRM\\crm-practice\\src\\Crm\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\f.dostiev\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -640,8 +640,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\crm-practice-main\\crm-practice-main\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
-              "projectPath": "D:\\crm-practice-main\\crm-practice-main\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj"
+            "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
+              "projectPath": "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj"
             }
           }
         }
@@ -671,7 +671,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

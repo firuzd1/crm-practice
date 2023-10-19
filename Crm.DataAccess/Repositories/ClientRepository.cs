@@ -1,3 +1,4 @@
+/*
 namespace Crm.DataAccess;
 
 public class ClientRepository : IClientRepository
@@ -42,3 +43,4 @@ public class ClientRepository : IClientRepository
 
 
 }
+*/

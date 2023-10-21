@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj": {}
+    "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj": {}
   },
   "projects": {
     "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
@@ -124,14 +124,14 @@
         }
       }
     },
-    "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj": {
+    "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
+        "projectUniqueName": "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj",
         "projectName": "Crm",
-        "projectPath": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
+        "projectPath": "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\CRM\\crm-practice\\src\\Crm\\obj\\",
+        "outputPath": "E:\\CRM\\crm-practice\\src\\crm\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

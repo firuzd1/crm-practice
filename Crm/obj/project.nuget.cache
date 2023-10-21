@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4qOC+4MYHP0zvC4wDJcrh2lqsQKXdE60VAE/dvlSJ9jqZJLfzSWfO55jvj+fgXsGk5JEZvt0OKNF4inwoO5MXQ==",
+  "dgSpecHash": "EzojT31USYgnstHRKYD8pqWDZY1r30JpES4tLOie4qr8ZMsit/naG0U8j+cqgza5P4xp7C/9zxvJL8rq8lC7xw==",
   "success": true,
-  "projectFilePath": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
+  "projectFilePath": "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

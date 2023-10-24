@@ -22,8 +22,8 @@ public sealed class ClientService : IClientService
         _clientRepository = clientRepository;
     }
 
-    public int GetClientCount() => _clientRepository.GetClientCount();
-    public bool CreateClient(ClientInfo clientInfo)
+    public async ValueTask<int> GetClientCountAsync(CancellationToken cancellationToken = default) => await _clientRepository.GetClientCountAsync(cancellationToken);
+    public ValueTask<bool> CreateClientAsync(ClientInfo clientInfo, CancellationToken cancellationToken = default)
     {
         Client newClient = new Client()
         {
@@ -39,18 +39,18 @@ public sealed class ClientService : IClientService
             UserPassword = clientInfo.Password
         };
 
-        return _clientRepository.CreateClient(newClient);
+        return _clientRepository.CreateClientAsync(newClient, cancellationToken);
     }
 
-    public ClientInfo? GetClient(string firstName, string lastName)
+    public async ValueTask<ClientInfo?> GetClientAsync(string firstName, string lastName, CancellationToken cancellationToken)
     {
-        Client client = _clientRepository.GetClient(firstName, lastName);
+        Client client = await _clientRepository.GetClientAsync(firstName, lastName, cancellationToken);
         ClientInfo clientInfo = client.ToClientInfo();
         return clientInfo;
     }
-    public bool ChangeClientName(string name, string lastName, string newFirstName, string newLastname)
+    public async ValueTask<bool> ChangeClientNameAsync(string name, string lastName, string newFirstName, string newLastname, CancellationToken cancellationToken)
     {
-        return _clientRepository.ChangeClientName(name, lastName, newFirstName, newLastname);
+        return await _clientRepository.ChangeClientNameAsync(name, lastName, newFirstName, newLastname, cancellationToken);
     }
 
 }

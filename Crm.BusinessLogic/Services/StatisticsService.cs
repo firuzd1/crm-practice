@@ -15,11 +15,11 @@ public sealed class StatisticsService : IStatisticsService
         _orderRepository = orderRepository;
     }
 
-    public int GetClientsCount() => _clientRepository.GetClientCount();
+    public ValueTask<int> GetClientsCountAsync(CancellationToken cancellationToken = default) => _clientRepository.GetClientCountAsync(cancellationToken);
 
-    public int GetOrderCount() => _orderRepository.GetOrderCount();
+    public ValueTask<int> GetOrderCountAsync(CancellationToken cancellationToken = default) => _orderRepository.GetOrderCountAsync(cancellationToken);
 
-    public int GetOrderCount(string orderState) => _orderRepository.GetOrderCount(orderState.ToOrderEnum());
+    public ValueTask<int> GetOrderCountAsync(string orderState, CancellationToken cancellationToken = default) => _orderRepository.GetOrderCountAsync(orderState.ToOrderEnum(), cancellationToken);
 
 
 }

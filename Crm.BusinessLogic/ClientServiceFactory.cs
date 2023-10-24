@@ -12,7 +12,7 @@ public static class ClientServiceFactory
 */
     public static IClientService CreatePostgreClientService()
     {
-        IClientRepository postgreClientRepository = new PostgreSqlClientRepository();
+        IClientRepository postgreClientRepository = new EfcoreClientRepository();
         return new ClientService(postgreClientRepository);
     }
 }

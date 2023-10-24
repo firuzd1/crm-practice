@@ -5,7 +5,7 @@ namespace Crm.BusinessLogic;
 
 public interface IStatisticsService
 {
-    public int GetClientsCount();
-    public int GetOrderCount();
-    public int GetOrderCount(string orderState);
+    public ValueTask<int> GetClientsCountAsync(CancellationToken cancellationToken = default);
+    public ValueTask<int> GetOrderCountAsync(CancellationToken cancellationToken = default);
+    public ValueTask<int> GetOrderCountAsync(string orderState, CancellationToken cancellationToken = default);
 }

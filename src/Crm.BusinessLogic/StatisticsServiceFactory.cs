@@ -7,8 +7,8 @@ public static class StatisticsServiceFactory
     {
         //IClientRepository clientRepository = new ClientRepository();
         //IOrderRepository orderRepository = new OrderRepository();
-        IClientRepository clientRepository = new EfcoreClientRepository();
-        IOrderRepository orderRepository1 = new EfcoreOrderRepository();
+        IClientRepository clientRepository = new PostgreSqlClientRepository();
+        IOrderRepository orderRepository1 = new PosgreSqlOrderRepository();
         return new StatisticsService(orderRepository1, clientRepository);
     }
 }

@@ -12,7 +12,7 @@ public static class OrderServiceFactory
 */
     public static IOrderService CreatePostgreOrderService()
     {
-        IOrderRepository postgreOrderRepository = new EfcoreOrderRepository();
+        IOrderRepository postgreOrderRepository = new PosgreSqlOrderRepository();
         return new OrderService(postgreOrderRepository);
     }
 }

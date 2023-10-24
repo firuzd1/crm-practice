@@ -18,7 +18,7 @@ public sealed class OrderService : IOrderService
 
     private long _id = 0;
     private readonly List<Order> _orderList = new List<Order>();
-    public async ValueTask<bool> CreateOrderAsync(OrderInfo orderInfo, CancellationToken cancellationToken = default)
+    public bool CreateOrder(OrderInfo orderInfo)
     {
         Order newOrder = new Order()
         {
@@ -30,31 +30,31 @@ public sealed class OrderService : IOrderService
             DeliveryAddress = orderInfo.DeliveryAddress,
             MyOrderState = orderInfo.NewOrderState.ToOrderEnum()
         };
-        return await _orderRepository.CreateAsync(newOrder, cancellationToken);
+        return _orderRepository.Create(newOrder);
     }
-    public async ValueTask<OrderInfo> GetOrderAsync(string myOrderDescription, CancellationToken cancellationToken = default)
+    public OrderInfo GetOrder(string myOrderDescription)
     {
-        Order order = await _orderRepository.GetOrderAsync(myOrderDescription, cancellationToken);
+        Order order = _orderRepository.GetOrder(myOrderDescription);
         OrderInfo orderInfo = order.ToOrderInfo();
         return orderInfo;
     }
-    public async ValueTask<bool> ChangeDescriptionAsync(string find, string newDescription, CancellationToken cancellationToken = default)
+    public bool ChangeDescription(string find, string newDescription)
     {
-        return await _orderRepository.ChangeDescriptionAsync(find, newDescription, cancellationToken);
+        return _orderRepository.ChangeDescription(find, newDescription);
     }
-    public ValueTask<bool> DeleteOrderAsync(string forDelete, CancellationToken cancellationToken = default)
+    public bool DeleteOrder(string forDelete)
     {
-        return _orderRepository.DeleteOrderAsync(forDelete, cancellationToken);
-    }
-
-    public ValueTask<int> GetOrderCountAsync(CancellationToken cancellationToken = default)
-    {
-        return _orderRepository.GetOrderCountAsync(cancellationToken);
+        return _orderRepository.DeleteOrder(forDelete);
     }
 
-    public ValueTask<bool> UpdateOrderStateAsync(int orderId, OrderState newOrderState, CancellationToken cancellationToken = default)
+    public int GetOrderCount()
     {
-        return _orderRepository.UpdateOrderStateAsync(orderId, newOrderState, cancellationToken);
+        return _orderRepository.GetOrderCount();
+    }
+
+    public bool UpdateOrderState(int orderId, OrderState newOrderState)
+    {
+        return _orderRepository.UpdateOrderState(orderId, newOrderState);
     }
 
 }

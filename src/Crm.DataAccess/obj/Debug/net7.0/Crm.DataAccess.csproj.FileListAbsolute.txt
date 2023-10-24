@@ -34,3 +34,5 @@ E:\crm-practice-main\crm-practice-main\src\Crm.DataAccess\obj\Debug\net7.0\Crm.D
 E:\crm-practice-main\crm-practice-main\src\Crm.DataAccess\obj\Debug\net7.0\refint\Crm.DataAccess.dll
 E:\crm-practice-main\crm-practice-main\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.pdb
 E:\crm-practice-main\crm-practice-main\src\Crm.DataAccess\obj\Debug\net7.0\ref\Crm.DataAccess.dll
+E:\CRM\crm-practice\src\Crm.DataAccess\bin\Debug\net7.0\Crm.DataAccess.runtimeconfig.json
+E:\CRM\crm-practice\src\Crm.DataAccess\obj\Debug\net7.0\Crm.DataAccess.genruntimeconfig.cache

@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj": {}
+    "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj": {}
   },
   "projects": {
     "E:\\CRM\\crm-practice\\src\\Crm.BusinessLogic\\Crm.BusinessLogic.csproj": {
@@ -95,9 +95,31 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.inMemory": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[7.0.6, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -124,14 +146,14 @@
         }
       }
     },
-    "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj": {
+    "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj",
+        "projectUniqueName": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
         "projectName": "Crm",
-        "projectPath": "E:\\CRM\\crm-practice\\src\\crm\\Crm.csproj",
+        "projectPath": "E:\\CRM\\crm-practice\\src\\Crm\\Crm.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\CRM\\crm-practice\\src\\crm\\obj\\",
+        "outputPath": "E:\\CRM\\crm-practice\\src\\Crm\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"

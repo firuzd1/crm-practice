@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "HxkDedQAQvTgfH27qmFsplcngReugPGhjyWiejPkYgM=",
+  "Source": "Crm.Web",
+  "BasePath": "_content/Crm.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

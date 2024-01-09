@@ -5,16 +5,23 @@ namespace Crm.BusinessLogic;
 public sealed class PostgreClientService : IClientService
 {
     private readonly IClientRepository _clientRepository;
+    public PostgreClientService(IClientRepository clientRepository)
+    {
+        _clientRepository = clientRepository;
+    }
 
-    public bool ChangeClientName(string name, string lastName, string newFirstName, string newLastname) =>
-    _clientRepository.ChangeClientName(name, lastName, newFirstName, newLastname);
+    public ValueTask<bool> ChangeClientNameAsync(string name, string lastName, string newFirstName, string newLastname, CancellationToken cancellationToken = default) =>
+    _clientRepository.ChangeClientNameAsync(name, lastName, newFirstName, newLastname, cancellationToken);
 
-    public bool CreateClient(ClientInfo clientInfo) =>
-        _clientRepository.CreateClient(clientInfo.ToClient());
+    public async ValueTask<bool> CreateClientAsync(ClientInfo clientInfo, CancellationToken cancellationToken = default) =>
+        await _clientRepository.CreateClientAsync(clientInfo.ToClient(), cancellationToken);
 
-    public ClientInfo? GetClient(string firstName, string lastName) =>
-        (_clientRepository.GetClient(firstName, lastName)).ToClientInfo();
+    public async ValueTask<ClientInfo?> GetClientAsync(string firstName, string lastName, CancellationToken cancellationToken = default)
+    {
+        Client client = await _clientRepository.GetClientAsync(firstName, lastName, cancellationToken); 
+        return client.ToClientInfo();
+    }
 
-    public int GetClientCount() =>
-        _clientRepository.GetClientCount();
+    public async ValueTask<int> GetClientCountAsync(CancellationToken cancellationToken = default) =>
+        await _clientRepository.GetClientCountAsync(cancellationToken);
 }

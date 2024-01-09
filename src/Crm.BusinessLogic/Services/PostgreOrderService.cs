@@ -6,12 +6,10 @@ public sealed class PostgreOrderService : IOrderService
 {
     private long _id = 0;
     private readonly IOrderRepository _orderRepository;
-    public bool ChangeDescription(string find, string newDescription)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool CreateOrder(OrderInfo orderInfo)
+    public async ValueTask<bool> ChangeDescriptionAsync(string find, string newDescription, CancellationToken cancellationToken = default)
+     => await _orderRepository.ChangeDescriptionAsync(find, newDescription, cancellationToken);
+    
+    public async ValueTask<bool> CreateOrderAsync(OrderInfo orderInfo, CancellationToken cancellationToken = default)
     {
         Order newOrder = new Order()
         {
@@ -23,25 +21,22 @@ public sealed class PostgreOrderService : IOrderService
             DeliveryAddress = orderInfo.DeliveryAddress,
             MyOrderState = orderInfo.NewOrderState.ToOrderEnum()
         };
-        return _orderRepository.Create(newOrder);
+        return await _orderRepository.CreateAsync(newOrder, cancellationToken);
     }
 
-    public bool DeleteOrder(string forDelete)
-    {
-        throw new NotImplementedException();
-    }
+    public async ValueTask<bool> DeleteOrderAsync(string forDelete, CancellationToken cancellationToken = default) 
+        => await _orderRepository.DeleteOrderAsync(forDelete, cancellationToken);
 
-    public OrderInfo GetOrder(string myOrderDescription)
+    public async ValueTask<OrderInfo> GetOrderAsync(string myOrderDescription, CancellationToken cancellationToken = default)
     {
-        Order order = _orderRepository.GetOrder(myOrderDescription);
+        Order order = await _orderRepository.GetOrderAsync(myOrderDescription, cancellationToken);
         OrderInfo orderInfo = order.ToOrderInfo();
         return orderInfo;
-
     }
 
-    public int GetOrderCount()
-    {
-        throw new NotImplementedException();
-    }
-    public bool UpdateOrderState(int orderId, OrderState newOrderState) => _orderRepository.UpdateOrderState(orderId, newOrderState);
+    public async ValueTask<int> GetOrderCountAsync(CancellationToken cancellationToken = default) 
+        => await _orderRepository.GetOrderCountAsync(cancellationToken);
+        
+    public ValueTask<bool> UpdateOrderStateAsync(int orderId, OrderState newOrderState, CancellationToken cancellationToken = default) 
+        => _orderRepository.UpdateOrderStateAsync(orderId, newOrderState, cancellationToken);
 }

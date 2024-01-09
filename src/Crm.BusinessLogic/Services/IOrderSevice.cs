@@ -4,11 +4,11 @@ namespace Crm.BusinessLogic;
 
 public interface IOrderService
 {
-    public bool CreateOrder(OrderInfo orderInfo);
-    public OrderInfo GetOrder(string myOrderDescription);
-    public bool ChangeDescription(string find, string newDescription);
-    public bool DeleteOrder(string forDelete);
-    public bool UpdateOrderState(int orderId, OrderState newOrderState);
-    public int GetOrderCount();
+    public ValueTask<bool> CreateOrderAsync(OrderInfo orderInfo, CancellationToken cancellationToken = default);
+    public ValueTask<OrderInfo> GetOrderAsync(string myOrderDescription, CancellationToken cancellationToken = default);
+    public ValueTask<bool> ChangeDescriptionAsync(string find, string newDescription, CancellationToken cancellationToken = default);
+    public ValueTask<bool> DeleteOrderAsync(string forDelete, CancellationToken cancellationToken = default);
+    public ValueTask<bool> UpdateOrderStateAsync(int orderId, OrderState newOrderState, CancellationToken cancellationToken = default);
+    public ValueTask<int> GetOrderCountAsync(CancellationToken cancellationToken = default);
 
 }

@@ -7,6 +7,7 @@ IClientService PostgreClientService = ClientServiceFactory.CreatePostgreClientSe
 IOrderService orderService1 = OrderServiceFactory.CreatePostgreOrderService();
 IStatisticsService statisticsService = StatisticsServiceFactory.CreateStatisticsService();
 
+CancellationToken cancellationToken = new();
 
 System.Console.WriteLine("Чтобы создать пользователя наберите <Create client>, чтобы пропустить нажмите <enter> ");
 string command = Console.ReadLine();
@@ -28,7 +29,7 @@ command = Console.ReadLine();
 if (command.Equals("yes"))
 {
     System.Console.WriteLine("Введите имя затем нажав <enter> введите фамилию: ");
-    var myClient = PostgreClientService.GetClient(Console.ReadLine(), Console.ReadLine());
+    var myClient = await PostgreClientService.GetClientAsync(Console.ReadLine(), Console.ReadLine(), cancellationToken);
 
     System.Console.WriteLine($"Name: {myClient.Value.FirstName}\nLast Name: {myClient.Value.LastName}\nMiddle Name: {myClient.Value.MiddleName}\nAge: {myClient.Value.Age}\nPassport Number: {myClient.Value.PassportNumber}\nPhone Number: {myClient.Value.Phone}");
 }
@@ -46,7 +47,7 @@ if (command.Equals("yes"))
     string newFirstName = Console.ReadLine();
     System.Console.WriteLine("Фамилия: ");
     string newLastName = Console.ReadLine();
-    var ChangeClientName = PostgreClientService.ChangeClientName(searchFirstName, searchLastName, newFirstName, newLastName);
+    var ChangeClientName = await PostgreClientService.ChangeClientNameAsync(searchFirstName, searchLastName, newFirstName, newLastName, cancellationToken);
     if (ChangeClientName)
     {
         System.Console.WriteLine("изменения успешно сохранены!");
@@ -73,7 +74,7 @@ if (command.Equals("yes"))
 {
     System.Console.WriteLine("Введите описание заказа: ");
     command = Console.ReadLine();
-    var myOrder = orderService1.GetOrder(command);
+    var myOrder = await orderService1.GetOrderAsync(command, cancellationToken);
     System.Console.WriteLine($"id: {myOrder.Id}\nОписание: {myOrder.Description}\nЦена: {myOrder.Price}\nДата заказа: {myOrder.Date}\nТип доставки: {myOrder.DeliveryType}\nАдрес: {myOrder.DeliveryAddress}\nСтатус заказа: {myOrder.NewOrderState}");
 }
 System.Console.WriteLine("Чтобы изменить описание заказа наберите <change> или <ch>, чтобы пропустить нажмите <enter>");
@@ -83,7 +84,7 @@ if (command.Equals("change") || command.Equals("ch"))
     System.Console.WriteLine("Введите id или описание заказа!");
     string getId = Console.ReadLine();
     string getNewDasciption = Console.ReadLine();
-    var changeOrder = orderService1.ChangeDescription(getId, getNewDasciption);
+    var changeOrder = await orderService1.ChangeDescriptionAsync(getId, getNewDasciption, cancellationToken);
     if (changeOrder)
     {
         System.Console.WriteLine("Изменения успешно сохранены!");
@@ -97,7 +98,7 @@ if (command.Equals("Del"))
     System.Console.WriteLine("Введите ордер для удаления заказа: ");
     command = Console.ReadLine();
     //orderService.DeleteOrder(command);
-    orderService1.DeleteOrder(command);
+    orderService1.DeleteOrderAsync(command, cancellationToken);
 }
 System.Console.WriteLine("Чтобы изменить состояние заказа введите <yes>, чтобы пропустить нажмите <enter>");
 command = Console.ReadLine();
@@ -107,7 +108,7 @@ if (command.Equals("yes"))
     int command1 = int.Parse(Console.ReadLine());
     System.Console.WriteLine("чтобы изменить состояние заказа введите: <0> - Ожидание, <1> - одобренный <2> - отменён");
     OrderState command2 = Enum.Parse<OrderState>(Console.ReadLine());
-    bool result = orderService1.UpdateOrderState(command1, command2);
+    bool result = await orderService1.UpdateOrderStateAsync(command1, command2, cancellationToken);
     if (!result)
         throw new Exception("пользователь не найден!");
     else System.Console.WriteLine("Состояние заказа успешно изменено!");
@@ -121,9 +122,9 @@ System.Console.WriteLine("Чтобы перейти в раздел статис
 command = Console.ReadLine();
 if (command.Equals("stat"))
 {
-    int statistics = statisticsService.GetClientsCount();
+    int statistics = await statisticsService.GetClientsCountAsync(cancellationToken);
     System.Console.WriteLine("Количество созданных пользователей: " + statistics);
-    statistics = statisticsService.GetOrderCount();
+    statistics = await statisticsService.GetOrderCountAsync(cancellationToken);
     System.Console.WriteLine("Количество созданных заказов: " + statistics);
 }
 
@@ -131,18 +132,18 @@ System.Console.WriteLine("Чтобы посмотреть количество <
 command = Console.ReadLine();
 if (command.Equals("0"))
 {
-    System.Console.WriteLine("в ожидании: " + statisticsService.GetOrderCount("0"));
+    System.Console.WriteLine("в ожидании: " + await statisticsService.GetOrderCountAsync("0", cancellationToken));
 }
 else if (command.Equals("1"))
 {
-    System.Console.WriteLine("подтверждённых: " + statisticsService.GetOrderCount("1"));
+    System.Console.WriteLine("подтверждённых: " + await statisticsService.GetOrderCountAsync("1", cancellationToken));
 }
 else if (command.Equals("2"))
 {
-    System.Console.WriteLine("отменённых: " + statisticsService.GetOrderCount("2"));
+    System.Console.WriteLine("отменённых: " + await statisticsService.GetOrderCountAsync("2", cancellationToken));
 }
 
-void CreateClient()
+async void CreateClient()
 {
     System.Console.WriteLine("Введите имя: ");
     string firstName = Console.ReadLine();
@@ -173,7 +174,7 @@ void CreateClient()
 
     short age = short.Parse(ageInputStr);
 
-    PostgreClientService.CreateClient(new ClientInfo()
+    await PostgreClientService.CreateClientAsync(new ClientInfo()
     {
         FirstName = firstName,
         LastName = lastName,
@@ -185,9 +186,9 @@ void CreateClient()
         Email = userEmail,
         Password = userPassword
 
-    });
+    }, cancellationToken);
 }
-void GetOrderDetails()
+async void GetOrderDetails()
 {
 
     System.Console.WriteLine("Введите идентификатор заказа:");
@@ -227,7 +228,7 @@ void GetOrderDetails()
             NewOrderState = OrderStateStr
         });
     */
-    orderService1.CreateOrder(new OrderInfo()
+    await orderService1.CreateOrderAsync(new OrderInfo()
     {
         Id = orderId,
         Description = orderDescription,
@@ -236,7 +237,7 @@ void GetOrderDetails()
         DeliveryType = orderDeliveryTypeStr,
         DeliveryAddress = orderDeliveryAddress,
         NewOrderState = OrderStateStr
-    });
+    }, cancellationToken);
 }
 bool ValidateClient(
     string firstname,
